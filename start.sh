@@ -15,6 +15,9 @@ if [[ $PHP_ARTISAN_MIGRATE == true ]]; then
     echo "run storage:link"
     php artisan storage:link -vvv
 
+    echo "run passport:keys"
+    php artisan passport:keys
+
     # run only on first deploy
     # echo "run passport:install"
     # php artisan passport:install --force
