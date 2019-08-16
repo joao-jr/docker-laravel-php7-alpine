@@ -11,8 +11,10 @@ fi
 if [[ $PHP_ARTISAN_MIGRATE == true ]]; then
     echo "run migrations"
     php artisan migrate --force -vvv
-    echo "run passport:install"
-    php artisan passport:install --force
+
+    # run only on first deploy
+    # echo "run passport:install"
+    # php artisan passport:install --force
 fi
 
 # if the user wants to run migrations
