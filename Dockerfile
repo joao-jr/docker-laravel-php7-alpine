@@ -79,6 +79,8 @@ RUN echo "---> Enabling PHP-Alpine" && \
     mkdir -p /var/www/app && \
     wget -O /tini https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini-static && \
     chmod +x /tini && \
+    echo "--> FFMPEG" && \
+    ffmpeg && \
     echo "---> Configuring PHP" && \
     sed -i "/listen = .*/c\listen = [::]:9000" /etc/php7/php-fpm.d/www.conf && \
     sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php7/php-fpm.d/www.conf && \
@@ -93,7 +95,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     mkdir /var/run/nginx && \
     echo "--> Cleanup &&" \
     rm -r /var/cache/apk && \
-    rm -r /usr/share/man
+    rm -r /usr/share/man 
 # Nginx conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
