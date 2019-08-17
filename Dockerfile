@@ -17,20 +17,19 @@ ENV TERM=xterm-256color \
     LOG_CHANNEL=stderr \
     TINI_VERSION=v0.18.0
 
-RUN apk add --no-cache ffmpeg
-
-
 # Install PHP , Nginx Common Tools, Composer and then cleanup
 RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update --no-cache \
     bash \
     bash-completion \
+    dcron \
     openrc \
     curl \
     fontconfig \
     libxrender \
     libxext \
     vim \
+    ffmpeg \
     git \
     unzip \
     wget \
@@ -62,7 +61,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     php7-pdo_sqlite \
     php7-pgsql \
     php7-phar \
-    php7-posix     \
+    php7-posix \
     php7-redis \
     php7-simplexml \
     php7-soap \
@@ -94,12 +93,17 @@ RUN echo "---> Enabling PHP-Alpine" && \
     sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php7/php.ini && \
     mkdir /var/run/nginx && \
     echo "--> Cleanup &&" \
-    rm -r /var/cache/apk && \
+    rm -r /var/cache/apk &&\
     rm -r /usr/share/man
 # Nginx conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# # Add the ENTRYPOINT script
+# Add Cronjob
+RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d && \
+    echo -e "* * * * * /usr/bin/php /var/www/app/artisan schedule:run --no-interaction --verbose >> /var/log/cron/cron.log \n" > /var/spool/cron/crontabs/root && \
+    chmod -R 0644 /var/spool/cron/crontabs
+
+# Add the ENTRYPOINT script
 COPY start.sh /scripts/start.sh
 RUN echo "--> Fixing permissions and PID for nginx" && \
     chmod +x /scripts/*.sh
