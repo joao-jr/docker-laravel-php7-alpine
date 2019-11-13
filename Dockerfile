@@ -99,11 +99,9 @@ RUN echo "---> Enabling PHP-Alpine" && \
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Add Cronjob
-RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d && \
-    echo -e "* * * * * ./cronjob.sh --verbose >> /var/www/app/cronlog/cron.log"
-
-    var/spool/cron/crontabs/root && \
-    chmod -R 0644 /var/spool/cron/crontabs
+RUN mkdir -p /var/www/app/cronlog/ && mkdir -m 0644 -p /var/www/app/cronlog/ && touch /var/www/app/cronlog/cron.log && mkdir -m 0644 -p /etc/cron.d && \
+    echo -e "* * * * * ./cronjob.sh --verbose >> /var/www/app/cronlog/cron.log" \
+    chmod -R 0644 /var/www/app/cronlog
 
 # Add the ENTRYPOINT script
 COPY start.sh /scripts/start.sh
