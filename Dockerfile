@@ -100,7 +100,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Add Cronjob
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d && \
-    echo -e "* * * * * /usr/bin/php /var/www/app/artisan schedule:run --no-interaction --verbose >> /var/log/cron/cron.log \n" > /var/spool/cron/crontabs/root && \
+    echo -e "* * * * * ./cronjob.sh --verbose >> /var/www/app/cronlog/cron.log"
+
+    var/spool/cron/crontabs/root && \
     chmod -R 0644 /var/spool/cron/crontabs
 
 # Add the ENTRYPOINT script
