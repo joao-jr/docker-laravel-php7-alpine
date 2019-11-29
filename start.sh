@@ -45,6 +45,8 @@ if [[ $PHP_ARTISAN_CRON == true ]]; then
     mkdir -p /var/www/app/cronlog/ && mkdir -m 0644 -p /var/www/app/cronlog/ && touch /var/www/app/cronlog/cron.log && mkdir -m 0644 -p /etc/cron.d && \
     echo -e "* * * * * sh /var/www/app/cronjob.sh" >> /var/www/app/cronjob.txt && \
     crontab /var/www/app/cronjob.txt && \
+    echo -e "* * * * * php artisan schedule:run" >> /var/www/app/cronjob2.txt && \
+    crontab /var/www/app/cronjob2.txt && \
     echo -e "* * * * * /var/www/app/cronjob.sh --verbose >> /var/www/app/cronlog/cron.log" && \
     chmod -R 0644 /var/www/app/cronlog
 fi
