@@ -41,7 +41,7 @@ nohup /usr/sbin/php-fpm7 -y /etc/php7/php-fpm.conf -F -O 2>&1 &
 # if this container should run as a cron
 if [[ $PHP_ARTISAN_CRON == true ]]; then
     echo "php artisan schedule:run "
-    crond -s /var/spool/cron/crontabs -b -L /var/log/cron/cron.log "$@" && tail -f /var/log/cron/cron.log
+    crond -s /var/spool/cron/crontabs -b -L /var/www/app/cronlog/cron.log "$@" && tail -f /var/www/app/cronlog/cron.log
 fi
 
 # if this container should run as a worker
