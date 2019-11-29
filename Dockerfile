@@ -104,6 +104,11 @@ COPY nginx.conf /etc/nginx/nginx.conf
 #    crontab /var/www/app/cronjob.txt && \
 #    echo -e "* * * * * /var/www/app/cronjob.sh --verbose >> /var/www/app/cronlog/cron.log" && \
 #    chmod -R 0644 /var/www/app/cronlog 
+    echo -e "* * * * * sh /var/www/app/cronjob.sh" >> /var/www/app/cronjob.txt && \
+    echo -e "* * * * * /var/www/app/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+    echo -e "* * * * * cd /var/www/app/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+    echo -e "* * * * * php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+    echo -e "* * * * * cd /var/www/app/ && php artisan schedule:run" >> /var/www/app/cronjob.txt
 
 # Add the ENTRYPOINT script
 COPY start.sh /scripts/start.sh
