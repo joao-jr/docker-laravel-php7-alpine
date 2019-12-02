@@ -108,9 +108,9 @@ RUN mkdir -p /var/www/app/cronlog/ && mkdir -m 0644 -p /var/www/app/cronlog/ && 
     echo -e "* * * * * /var/www/app/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
     echo -e "* * * * * cd /var/www/app/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
     echo -e "* * * * * php artisan schedule:run" >> /var/www/app/cronjob.txt && \
-    echo -e "* * * * * cd /var/www/app/ && php artisan schedule:run" >> /var/www/app/cronjob.txt
-    echo -e "* * * * * cd /usr/bin/php7/ && php artisan schedule:run" >> /var/www/app/cronjob.txt
-    echo -e "* * * * * cd /usr/bin/php7/ php artisan schedule:run" >> /var/www/app/cronjob.txt
+    echo -e "* * * * * cd /var/www/app/ && php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+    echo -e "* * * * * cd /usr/bin/php7/ && php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+    echo -e "* * * * * cd /usr/bin/php7/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
     echo -e "* * * * * /usr/bin/php7/ php artisan schedule:run" >> /var/www/app/cronjob.txt
 
 # Add the ENTRYPOINT script
