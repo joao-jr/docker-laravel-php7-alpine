@@ -104,14 +104,14 @@ RUN mkdir -p /var/www/app/cronlog/ && mkdir -m 0644 -p /var/www/app/cronlog/ && 
 #    crontab /var/www/app/cronjob.txt && \
 #    echo -e "* * * * * /var/www/app/cronjob.sh --verbose >> /var/www/app/cronlog/cron.log" && \
 #    chmod -R 0644 /var/www/app/cronlog 
-    echo -e "* * * * * sh /var/www/app/cronjob.sh" >> /var/www/app/cronjob.txt && \
-    echo -e "* * * * * /var/www/app/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
-    echo -e "* * * * * cd /var/www/app/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
-    echo -e "* * * * * php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+#    echo -e "* * * * * sh /var/www/app/cronjob.sh" >> /var/www/app/cronjob.txt && \
+#    echo -e "* * * * * /var/www/app/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+#    echo -e "* * * * * cd /var/www/app/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+#    echo -e "* * * * * php artisan schedule:run" >> /var/www/app/cronjob.txt && \
     echo -e "* * * * * cd /var/www/app/ && php artisan schedule:run" >> /var/www/app/cronjob.txt && \
-    echo -e "* * * * * cd /usr/bin/php7/ && php artisan schedule:run" >> /var/www/app/cronjob.txt && \
-    echo -e "* * * * * cd /usr/bin/php7/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
-    echo -e "* * * * * /usr/bin/php7/ php artisan schedule:run" >> /var/www/app/cronjob.txt
+#    echo -e "* * * * * cd /usr/bin/php7/ && php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+#    echo -e "* * * * * cd /usr/bin/php7/ php artisan schedule:run" >> /var/www/app/cronjob.txt && \
+#    echo -e "* * * * * /usr/bin/php7/ php artisan schedule:run" >> /var/www/app/cronjob.txt
 
 # Add the ENTRYPOINT script
 COPY start.sh /scripts/start.sh
