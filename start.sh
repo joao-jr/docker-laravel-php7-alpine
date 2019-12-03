@@ -49,7 +49,7 @@ if [[ $PHP_ARTISAN_CRON == true ]]; then
     #echo -e "* * * * * php artisan schedule:run" >> /var/www/app/cronjob.txt && \
     #echo -e "* * * * * cd /var/www/app/ && php artisan schedule:run" >> /var/www/app/cronjob.txt && \
     crontab /var/www/app/cronjob.txt && \
-    service crond start
+    /usr/sbin/crond
     #echo -e "* * * * * /var/www/app/cronjob.sh --verbose >> /var/www/app/cronlog/cron.log" && \
     #chmod -R 0644 /var/www/app/cronlog
 fi
