@@ -22,6 +22,7 @@ RUN echo "---> Enabling PHP-Alpine" && \
     apk add --update --no-cache \
     bash \
     bash-completion \
+    busybox-initscripts \
     dcron \
     openrc \
     curl \
