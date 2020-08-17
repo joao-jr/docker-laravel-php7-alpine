@@ -57,7 +57,7 @@ fi
 # if this container should run as a worker
 if [[ $PHP_ARTISAN_WORKER == true ]]; then
     echo "php artisan queue:work"
-    php artisan queue:work
+    php artisan queue:work --tries=3
 fi
 # Starts nginx!
 echo "Starts nginx!"
